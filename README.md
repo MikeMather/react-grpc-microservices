@@ -6,6 +6,8 @@ The application consists of a simple e-commerce store for shopping for coffee pr
 
 ## The Components
 
+![Services Diagram](https://github.com/MRoym/react-grpc-microservices/blob/master/media/microservices.png)
+
 ### Frontend
 The client side application made with ReactJS which provides the simple UI for the application.
 
