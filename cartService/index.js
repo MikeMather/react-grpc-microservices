@@ -2,8 +2,8 @@ const grpc = require('grpc')
 const cartProto = grpc.load('./protos/cart.proto')
 const redis = require('redis');
 
-// const redisClient = redis.createClient('6379', 'redis');
-const redisClient = redis.createClient('6379', '172.17.0.2');
+const redisClient = redis.createClient('6379', 'redis');
+// const redisClient = redis.createClient('6379', '172.17.0.2');
 
 
 const server = new grpc.Server()
@@ -33,7 +33,6 @@ server.addService(cartProto.CartService.service, {
                 if (result) {
                     const cart = JSON.parse(result);
                     cart.items = [...cart.items, call.request.item];
-                    console.log(':: ', cart);
                     redisClient.set(call.request.user_id, JSON.stringify(cart), redis.print)
                     callback(null, {});
                 }
@@ -47,7 +46,6 @@ server.addService(cartProto.CartService.service, {
     }
 })
 
-// server.bind('0.0.0.0:5001', grpc.ServerCredentials.createInsecure())
-server.bind('127.0.0.1:5001', grpc.ServerCredentials.createInsecure())
-console.log('Server running at http://127.0.0.1:5001')
+server.bind('0.0.0.0:5001', grpc.ServerCredentials.createInsecure())
+// server.bind('127.0.0.1:5001', grpc.ServerCredentials.createInsecure())
 server.start()

@@ -19,7 +19,7 @@ server.addService(productsProto.ProductService.service, {
     },
 })
 
-//server.bind('0.0.0.0:5000', grpc.ServerCredentials.createInsecure())
-server.bind('127.0.0.1:5000', grpc.ServerCredentials.createInsecure())
+server.bind('0.0.0.0:5000', grpc.ServerCredentials.createInsecure())
+//server.bind('127.0.0.1:5000', grpc.ServerCredentials.createInsecure())
 console.log('Server running at http://127.0.0.1:5000')
 server.start()
